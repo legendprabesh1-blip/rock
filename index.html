@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabesh | Vibe Coder Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Stylish Animated Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <h1 class="welcome-glow-text">Hello Welcome</h1>
+        <p class="welcome-sub">Tap anywhere or wait to explore</p>
+    </div>
+
+    <!-- Rope Pull Switcher for Light/Dark Mode & Hobbies Reveal -->
+    <div class="rope-wrapper" id="ropeToggle" title="Pull rope to reveal secrets & change theme">
+        <div class="rope-line"></div>
+        <div class="rope-handle"></div>
+    </div>
+
+    <!-- Animated Particle Background Canvas -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">⚡ Prabesh</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#work" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#hobbies" onclick="toggleMenu()">Hobbies</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <span>Nepal</span>
+            <span><span id="clock">00:00</span></span>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Text on Left, Bigger Circle Photo on Right in ONE ROW) -->
+    <section class="hero">
+        <div class="hero-row">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    AVAILABLE FOR WORK
+                </div>
+                <h1>Hi, I'm Prabesh.<br>I am a <br><span class="role-box"><span id="roleTypewriter"></span><span class="cursor">|</span></span></h1>
+                
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Start project</a>
+                    <a href="#work" class="btn btn-secondary">See my work</a>
+                </div>
+            </div>
+
+            <div class="profile-card-container">
+                <div class="profile-card">
+                    <div class="profile-avatar circle-avatar">
+                        <img src="profile-pic.jpg" alt="Prabesh" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="avatar-fallback" style="display:none;">📷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rope-Triggered Hobbies Section -->
+    <section class="hobbies-section" id="hobbies">
+        <div class="hobbies-header">
+            <h2>Personal Hobbies & Passions</h2>
+            <p class="rope-note">📌 <em>Pull the rope above to reveal or hide my personal data!</em></p>
+        </div>
+        <div class="hobbies-container hidden-data" id="hobbiesContainer">
+            <div class="hobby-card">
+                <div class="hobby-icon">✈️</div>
+                <h3>Travelling</h3>
+                <p>Exploring new places, scenic views, and local environments.</p>
+            </div>
+            <div class="hobby-card">
+                <div class="hobby-icon">🍜</div>
+                <h3>Eating</h3>
+                <p>Enjoying delicious local food, snacks, and culinary treats.</p>
+            </div>
+            <div class="hobby-card">
+                <div class="hobby-icon">📚</div>
+                <h3>Reading</h3>
+                <p>Discovering new concepts, stories, and technical articles.</p>
+            </div>
+            <div class="hobby-card">
+                <div class="hobby-icon">🧭</div>
+                <h3>Exploring</h3>
+                <p>Always curious about code structures, tech stacks, and world dynamics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Magic Doors Section -->
+    <section class="doors-section" id="work">
+        <h2>Magic happens behind the doors</h2>
+        <p class="section-sub">Click a door to open and view the project gallery.</p>
+        <div class="doors-container">
+            <div class="door-card" onclick="openModal('webModal')">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <span class="door-label">01 / WEB DEV</span>
+                        <h3>Web Development</h3>
+                        <p>Click to open 3 project photos</p>
+                        <div class="door-graphic">💻</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="door-card" onclick="openModal('appModal')">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <span class="door-label">02 / APP DEV</span>
+                        <h3>App Development</h3>
+                        <p>Click to open 3 project photos</p>
+                        <div class="door-graphic">📱</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="door-card" onclick="openModal('uiModal')">
+                <div class="door-inner">
+                    <div class="door-front">
+                        <span class="door-label">03 / DESIGN</span>
+                        <h3>UI/UX Design</h3>
+                        <p>Click to open 3 project photos</p>
+                        <div class="door-graphic">🎨</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action & Direct WhatsApp Message / Live Camera Selfie Section -->
+    <section class="cta-section" id="contact">
+        <h2>Got a project?<br>Send me a WhatsApp message!</h2>
+        <p>Fill out the form below. It sends directly to my WhatsApp (9824706111) without opening WhatsApp for you!</p>
+        
+        <form id="whatsappForm" class="whatsapp-form" onsubmit="sendToWhatsApp(event)">
+            <input type="text" id="visitorName" placeholder="Your Name" required class="form-input">
+            <textarea id="visitorMsg" placeholder="Your Message..." rows="3" required class="form-input"></textarea>
+
+            <!-- Live Camera Selfie Feature (No Gallery Upload) -->
+            <div class="selfie-section">
+                <label class="selfie-label">📸 Take a Recent Selfie (Live Camera Only):</label>
+                <div class="camera-box">
+                    <video id="cameraStream" autoplay playsinline style="display:none;"></video>
+                    <canvas id="snapshotCanvas" style="display:none;"></canvas>
+                    <div id="selfiePreviewPlaceholder" class="selfie-placeholder">No selfie captured yet</div>
+                    <img id="selfieResultImg" alt="Recent Selfie" style="display:none; width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 10px auto;" />
+                </div>
+                <button type="button" id="startCamBtn" class="btn btn-secondary" onclick="startCamera()">Open Camera</button>
+                <button type="button" id="captureCamBtn" class="btn btn-secondary" onclick="captureSelfie()" style="display:none;">Capture Recent Selfie</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">Send Message to WhatsApp</button>
+            <p id="formStatus" class="form-status"></p>
+        </form>
+
+        <p class="contact-number" style="margin-top:20px;">📞 Phone / WhatsApp: <a href="tel:9824706111">9824706111</a></p>
+    </section>
+
+    <!-- Dynamic Modals for Magic Doors -->
+    <div class="modal" id="webModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('webModal')">&times;</button>
+            <h3>💻 Web Development Projects</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">Dashboard UI</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #10b981, #047857);">E-Commerce App</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #6366f1, #4338ca);">Interactive Tool</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="appModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('appModal')">&times;</button>
+            <h3>📱 App Development Projects</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background: linear-gradient(135deg, #f59e0b, #b45309);">Expense Tracker</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #ec4899, #be185d);">Brick Breaker Game</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">Crypto Wallet UI</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="uiModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('uiModal')">&times;</button>
+            <h3>🎨 UI/UX Design Concepts</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background: linear-gradient(135deg, #06b6d4, #0e7490);">Glassmorphism Card</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #f43f5e, #9f1239);">Dark Mode Theme</div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #14b8a6, #0f766e);">Minimalist Landing</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
